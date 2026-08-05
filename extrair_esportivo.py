@@ -1,17 +1,17 @@
 import pandas as pd
 
 ARQUIVO_ENTRADA = "produtos_classificados.xlsx"
-ARQUIVO_SAIDA = "sku_hex.xlsx"
+ARQUIVO_SAIDA = "sku_esportivo.xlsx"
 
-TERMOS_PRINCIPAIS = ["HEXAGONAL"]
-TERMOS_VARIACAO = ["HEXAGONLA", "HEXGONAL", "HEXAGONA"]
+TERMOS_PRINCIPAIS = ["ESPORTIVO", "ESPORTIVOS"]
+TERMOS_VARIACAO = ["ESPOTIVO", "ESPORTV", "ESPRTIVO"]
 
 
 def normalizar(sku):
     partes = sku.split("-")
     for i, p in enumerate(partes):
         if p in TERMOS_VARIACAO:
-            partes[i] = "HEXAGONAL"
+            partes[i] = "ESPORTIVO"
     return "-".join(partes)
 
 
@@ -36,7 +36,7 @@ df_resultado = df_resultado.sort_values("SKU").reset_index(drop=True)
 
 df_resultado.to_excel(ARQUIVO_SAIDA, index=False)
 
-print(f"Total HEXAGONAL extraidos: {len(df_resultado)}")
+print(f"Total ESPORTIVO extraidos: {len(df_resultado)}")
 print(f"  - Principais: {len(df_principal)}")
 print(f"  - Corrigidos: {len(df_variacao)}")
 print("Finalizado!")
